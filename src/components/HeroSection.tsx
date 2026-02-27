@@ -90,7 +90,7 @@ const HeroSection = () => {
           className="h-[85%] md:h-[90%] w-auto object-contain object-top md:object-right-top mt-4 md:mt-8 md:mr-8 select-none"
         />
         {/* Left fade - desktop only */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent hidden md:block" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent hidden md:block" />
         {/* Bottom fade - stronger on mobile for smooth blend */}
         <div className="absolute inset-x-0 bottom-0 h-[55%] md:h-[35%] bg-gradient-to-t from-background via-background/70 to-transparent" />
       </div>
