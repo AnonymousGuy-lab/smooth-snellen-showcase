@@ -88,7 +88,7 @@ const HeroSection = () => {
           src="/images/portrait.png"
           alt="Portrait"
           className="h-[85%] md:h-[90%] w-auto object-contain object-top md:object-right-top mt-4 md:mt-8 md:mr-8 select-none"
-          style={{ maskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)', WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)' }}
+          style={{ maskImage: 'linear-gradient(to bottom, black 15%, transparent 65%)', WebkitMaskImage: 'linear-gradient(to bottom, black 15%, transparent 65%)' }}
         />
         {/* Left fade - desktop only */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent hidden md:block" />
