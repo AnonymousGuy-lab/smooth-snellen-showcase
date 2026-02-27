@@ -80,9 +80,19 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex flex-col justify-center section-padding relative"
+      className="min-h-screen flex flex-col justify-center section-padding relative overflow-hidden"
     >
-      <div className="max-w-[95vw]">
+      {/* Fixed background portrait */}
+      <div className="absolute inset-0 z-0 flex justify-end items-end pointer-events-none">
+        <img
+          src="/images/portrait.png"
+          alt="Portrait"
+          className="h-[85%] w-auto object-contain object-right-bottom opacity-40 select-none"
+          style={{ filter: 'grayscale(30%) brightness(0.7)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+      </div>
+      <div className="max-w-[95vw] relative z-10">
         <p className="body-sm text-muted-foreground mb-6 tracking-[0.3em]">
           Computer Science Engineering Student
         </p>
