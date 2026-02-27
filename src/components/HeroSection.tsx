@@ -83,17 +83,16 @@ const HeroSection = () => {
       className="min-h-screen flex flex-col justify-center section-padding relative overflow-hidden"
     >
       {/* Fixed background portrait */}
-      <div className="absolute inset-0 z-0 flex justify-end items-end pointer-events-none">
+      <div className="absolute inset-0 z-0 flex justify-end items-start pointer-events-none">
         <img
           src="/images/portrait.png"
           alt="Portrait"
-          className="h-[85%] w-auto object-contain object-right-bottom opacity-50 select-none"
-          style={{ filter: 'grayscale(20%) brightness(0.8)' }}
+          className="h-[90%] w-auto object-contain object-right-top mt-8 mr-8 select-none"
         />
         {/* Left fade */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         {/* Bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-background via-background/60 to-transparent" />
       </div>
       <div className="max-w-[95vw] relative z-10">
         <p className="body-sm text-muted-foreground mb-6 tracking-[0.3em]">
