@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ExternalLink, Github } from "lucide-react";
@@ -11,6 +11,7 @@ const projects = [
     description:
       "A full-stack e-commerce web app with user authentication, product management, cart functionality, and payment integration.",
     tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
     live: "#",
     github: "#",
   },
@@ -19,6 +20,7 @@ const projects = [
     description:
       "A real-time messaging app with WebSocket integration, user rooms, and message history.",
     tech: ["React", "Socket.io", "Node.js", "MongoDB"],
+    image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&q=80",
     live: "#",
     github: "#",
   },
@@ -27,6 +29,7 @@ const projects = [
     description:
       "This very portfolio — an Awwwards-inspired design with GSAP animations, smooth scroll, and a custom cursor.",
     tech: ["React", "GSAP", "Tailwind CSS", "Lenis"],
+    image: "https://images.unsplash.com/photo-1545239351-ef35f43d514b?w=800&q=80",
     live: "#",
     github: "#",
   },
@@ -34,6 +37,9 @@ const projects = [
 
 const ProjectsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const imgElRef = useRef<HTMLImageElement>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -57,8 +63,68 @@ const ProjectsSection = () => {
     return () => ctx.revert();
   }, []);
 
+  // Follow mouse within section
+  useEffect(() => {
+    const section = sectionRef.current;
+    const imageContainer = imageRef.current;
+    if (!section || !imageContainer) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = section.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      gsap.to(imageContainer, {
+        x: x - 200,
+        y: y - 140,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    };
+
+    section.addEventListener("mousemove", handleMouseMove);
+    return () => section.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const handleMouseEnter = (index: number) => {
+    setActiveIndex(index);
+    if (imgElRef.current) {
+      gsap.killTweensOf(imgElRef.current);
+      imgElRef.current.src = projects[index].image;
+      gsap.fromTo(
+        imgElRef.current,
+        { scale: 1.15, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" }
+      );
+    }
+    if (imageRef.current) {
+      gsap.to(imageRef.current, { opacity: 1, duration: 0.3, ease: "power2.out" });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setActiveIndex(null);
+    if (imageRef.current) {
+      gsap.to(imageRef.current, { opacity: 0, duration: 0.3, ease: "power2.in" });
+    }
+  };
+
   return (
-    <section ref={sectionRef} id="projects" className="py-32 md:py-48 section-padding">
+    <section ref={sectionRef} id="projects" className="py-32 md:py-48 section-padding relative">
+      {/* Floating preview image */}
+      <div
+        ref={imageRef}
+        className="fixed top-0 left-0 w-[400px] h-[280px] rounded-sm overflow-hidden pointer-events-none z-50 opacity-0 hidden md:block"
+        style={{ willChange: "transform" }}
+      >
+        <img
+          ref={imgElRef}
+          src=""
+          alt=""
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       <span className="body-sm text-muted-foreground tracking-[0.3em] mb-16 block">
         Selected Projects
       </span>
@@ -67,6 +133,8 @@ const ProjectsSection = () => {
           <div
             key={project.title}
             className="project-card group border-t border-border py-12 md:py-16"
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
           >
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
               <div className="flex-1">
