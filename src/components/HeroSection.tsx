@@ -91,10 +91,8 @@ const HeroSection = () => {
         />
         {/* Left fade - desktop only */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent hidden md:block" />
-        {/* Overlay for mobile text readability */}
-        <div className="absolute inset-0 bg-background/40 md:hidden" />
-        {/* Bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 h-[45%] md:h-[35%] bg-gradient-to-t from-background via-background/80 to-transparent" />
+        {/* Bottom fade - stronger on mobile for smooth blend */}
+        <div className="absolute inset-x-0 bottom-0 h-[55%] md:h-[35%] bg-gradient-to-t from-background via-background/70 to-transparent" />
       </div>
       <div className="max-w-[95vw] relative z-10">
         <p className="body-sm text-muted-foreground mb-6 tracking-[0.3em]">
