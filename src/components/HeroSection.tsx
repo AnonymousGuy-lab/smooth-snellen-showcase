@@ -94,7 +94,7 @@ const HeroSection = () => {
         {/* Bottom fade - stronger on mobile for smooth blend */}
         <div className="absolute inset-x-0 bottom-0 h-[55%] md:h-[35%] bg-gradient-to-t from-background via-background/70 to-transparent" />
       </div>
-      <div className="max-w-[95vw] relative z-10 mt-32 md:mt-20 lg:mt-0">
+      <div className="max-w-[95vw] relative z-10 mt-52 md:mt-36 lg:mt-0">
         <p className="body-sm text-muted-foreground mb-6 tracking-[0.3em]">
           Computer Science Engineering Student
         </p>
